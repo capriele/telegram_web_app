@@ -330,82 +330,108 @@
         small {
             font-size: 12px;
         }
+
+        table#percentTable {
+            margin: 0 auto;
+        }
+
+        input[type="radio"] {
+            display: none;
+        }
+
+        label {
+            display: inline-block;
+            cursor: pointer;
+            padding: 5px 10px;
+            background-color: #ddd;
+            border: 1px solid #bbb;
+            min-width: 28px;
+        }
+
+        input[type="radio"]:checked+label {
+            background-color: var(--tg-theme-button-color, #50a8eb);
+            color: var(--tg-theme-button-text-color, #ffffff);
+        }
     </style>
 </head>
 
 <body class="" style="visibility: hidden;">
 
     <section id="top_sect" class="second">
-        <button id="main_btn" onclick="DemoApp.sendMessage('');">Send «Hello, World!»</button>
-        <button id="with_webview_btn" onclick="DemoApp.sendMessage('', true);">Send «Hello, World!» with inline webview
+        <input type="text" placeholder="Cosa stai cercando?..." id="regular_field" />
+
+        <p><b>Quale percentuale di sconto vorresti?</b></p>
+        <table id="percentTable">
+            <tbody>
+            </tbody>
+        </table>
+
+        <button id="main_btn" onclick="DemoApp.sendMessage('');">Cerca su Amazon la tua Offerta</button>
+        <!--
+            <button id="with_webview_btn" onclick="DemoApp.sendMessage('', true);">Send «Hello, World!» with inline webview
             button</button>
         <button id="data_btn" onclick="DemoApp.sendTime(true);">Send current time to bot (x10)</button>
         <button onclick="DemoApp.expand();">Expand Webview</button>
         <button onclick="DemoApp.toggleMainButton(this);">Hide Main Button</button>
-        <input type="text" placeholder="Cosa stai cercando?..." id="regular_field" />
+            -->
+
     </section>
+    <!--
     <section>
         <div id="btn_status" class="hint" style="display: none;">
         </div>
-        <p>Test links:</p>
-        <ul>
-            <li><a id="regular_link" href="">Regular link #2</a> (opens inside webview)</li>
-            <li><a href="https://telegram.org/" target="_blank">target="_blank" link</a> (opens outside webview)</li>
-            <li><a href="javascript:window.open('https://telegram.org/');">window.open() link</a> (opens outside
-                webview)</li>
-            <li><a href="https://t.me/like">LikeBot t.me link</a> (opens inside Telegram app)</li>
-            <li><a href="javascript:Telegram.WebApp.openTelegramLink('https://t.me/vote');">web_app_open_tg_link()</a>
-                (opens inside Telegram app)</li>
-            <li><a href="javascript:Telegram.WebApp.openLink('https://google.com/');">web_app_open_link()</a> (opens
-                outside webview)</li>
-            <li><a href="tg://resolve?domain=vote">VoteBot tg:// link</a> (does not open)</li>
-            <li><a
-                    href="javascript:Telegram.WebApp.openLink('https://telegra.ph/api',{try_instant_view:true});">web_app_open_link({try_instant_view:true})</a>
-                (opens IV inside Telegram app)</li>
-        </ul>
-        <p>Test permissions:</p>
-        <ul>
-            <li><a href="javascript:;" onclick="return DemoApp.requestLocation(this);">Request Location</a>
-                <span></span>
-            </li>
-            <li><a href="javascript:;" onclick="return DemoApp.requestVideo(this);">Request Video</a> <span></span></li>
-            <li><a href="javascript:;" onclick="return DemoApp.requestAudio(this);">Request Audio</a> <span></span></li>
-            <li><a href="javascript:;" onclick="return DemoApp.requestAudioVideo(this);">Request Audio+Video</a>
-                <span></span>
-            </li>
-        </ul>
         <p>Test alerts:</p>
         <div class="columns">
-            <ul>
-                <li><a href="javascript:;" onclick="alert('Hello!');">alert</a></li>
-                <li><a href="javascript:;" onclick="confirm('Are you sure?');">confirm</a></li>
-                <li><a href="javascript:;" onclick="prompt('How old are you?');">prompt</a></li>
-            </ul>
             <ul>
                 <li><a href="javascript:;" onclick="DemoApp.showAlert('Hello!');">showAlert</a></li>
                 <li><a href="javascript:;" onclick="DemoApp.showConfirm('Are you sure?');">showConfirm</a></li>
                 <li><a href="javascript:;" onclick="DemoApp.showPopup();">showPopup</a></li>
-                <li><a href="javascript:;" onclick="DemoApp.showScanQrPopup();">showScanQrPopup</a></li>
-                <li><a href="javascript:;" onclick="DemoApp.showScanQrPopup(true);">showScanQrPopup (links only)</a>
-                </li>
             </ul>
         </div>
-        <pre><code id="webview_data"></code></pre>
-        <div class="hint">
-            Data passed to webview.
-            <span id="webview_data_status" class="status_need">Checking hash...</span>
-        </div>
-        <pre><code id="theme_data"></code></pre>
-        <div class="hint">
-            Theme params
-        </div>
-        <div class="hint">
-            Version: <span id="ver"></span>,
-            platform: <span id="platform"></span>
-        </div>
     </section>
+-->
     <div class="viewport-border"></div>
     <div class="viewport-stable_border"></div>
+
+    <script>
+        // Funzione per creare i radiobutton di percentuali
+        function createPercentRadioButtons() {
+            var tableBody = document.querySelector("#percentTable tbody");
+
+            var percent = 5;
+            for (var row = 0; row < 5; row++) {
+                var tableRow = document.createElement("tr");
+
+                for (var col = 0; col < 5; col++) {
+                    var cell = document.createElement("td");
+
+                    var radioButton = document.createElement("input");
+                    radioButton.type = "radio";
+                    radioButton.name = "percent";
+                    radioButton.value = percent;
+                    radioButton.setAttribute("id", "percent-" + percent);
+
+
+                    var label = document.createElement("label");
+                    label.textContent = percent + "%";
+                    label.setAttribute("for", "percent-" + percent);
+
+                    cell.appendChild(radioButton);
+                    cell.appendChild(label);
+                    if (percent <= 90) {
+                        tableRow.appendChild(cell);
+                    }
+
+                    percent += 5;
+                }
+
+                tableBody.appendChild(tableRow);
+            }
+        }
+
+        // Chiamata alla funzione per creare i radiobutton di percentuali
+        createPercentRadioButtons();
+    </script>
 
     <script type="application/javascript">
 
@@ -763,11 +789,6 @@
         if (DemoApp.initDataUnsafe.query_id) {
             document.getElementById('main_btn').style.display = 'block';
         }
-        document.getElementById('with_webview_btn').style.display = !!DemoApp.initDataUnsafe.query_id && !DemoApp.initDataUnsafe.receiver ? 'block' : 'none';
-        document.getElementById('webview_data').innerHTML = JSON.stringify(DemoApp.initDataUnsafe, null, 2);
-
-        document.getElementById('theme_data').innerHTML = JSON.stringify(Telegram.WebApp.themeParams, null, 2);
-        document.getElementById('regular_link').setAttribute('href', document.getElementById('regular_link').getAttribute('href') + location.hash);
         document.getElementById('regular_field').addEventListener('input', function (e) {
             const val = this.value.toLowerCase();
             if (val.indexOf('progress') >= 0) {
@@ -776,9 +797,6 @@
                 Telegram.WebApp.MainButton.hideProgress();
             }
         });
-
-        document.getElementById('ver').innerHTML = Telegram.WebApp.version;
-        document.getElementById('platform').innerHTML = Telegram.WebApp.platform;
 
         if (DemoApp.initDataUnsafe.receiver) {
             document.getElementById('peer_wrap').style.display = 'block';
