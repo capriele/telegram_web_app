@@ -451,7 +451,7 @@
 
         function success() {
             var checked = document.querySelectorAll('input[type=radio]:checked');
-            if (document.getElementById("regular_field").value === "" || !checked.length) {
+            if (document.getElementById("regular_field").value === "" || checked.length == 0) {
                 document.getElementById('main_btn').disabled = true;
             } else {
                 document.getElementById('main_btn').disabled = false;
