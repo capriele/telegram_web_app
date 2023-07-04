@@ -434,10 +434,9 @@
             </ul>
         </div>
     </section>
--->
     <div class="viewport-border"></div>
     <div class="viewport-stable_border"></div>
-
+-->
     <script type="application/javascript">
 
         /*
@@ -745,11 +744,13 @@
                 DemoAppViewport.setData();
             },
             setData() {
+                /*
                 document.querySelector('.viewport-border')
                     .setAttribute('text', window.innerWidth + ' x ' + round(Telegram.WebApp.viewportHeight, 2))
                 document.querySelector('.viewport-stable_border')
                     .setAttribute('text', window.innerWidth + ' x ' + round(Telegram.WebApp.viewportStableHeight, 2) +
                         ' | is_expanded: ' + (Telegram.WebApp.isExpanded ? 'true' : 'false'));
+                */
             }
         };
 
@@ -823,11 +824,13 @@
         DemoApp.init();
 
         function setViewportData() {
+            /*
             document.querySelector('.viewport-border')
                 .setAttribute('text', window.innerWidth + ' x ' + round(Telegram.WebApp.viewportHeight, 2))
             document.querySelector('.viewport-stable_border')
                 .setAttribute('text', window.innerWidth + ' x ' + round(Telegram.WebApp.viewportStableHeight, 2) +
                     ' | is_expanded: ' + (Telegram.WebApp.isExpanded ? 'true' : 'false'));
+            */
         }
         Telegram.WebApp.setHeaderColor('secondary_bg_color');
         Telegram.WebApp.onEvent('viewportChanged', setViewportData);
