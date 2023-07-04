@@ -363,6 +363,51 @@
         <p><b>Quale percentuale di sconto vorresti?</b></p>
         <table id="percentTable">
             <tbody>
+                <tr>
+                    <td><input type="radio" name="percent" value="5" id="percent-5"><label for="percent-5">5%</label>
+                    </td>
+                    <td><input type="radio" name="percent" value="10" id="percent-10"><label
+                            for="percent-10">10%</label></td>
+                    <td><input type="radio" name="percent" value="15" id="percent-15"><label
+                            for="percent-15">15%</label></td>
+                    <td><input type="radio" name="percent" value="20" id="percent-20"><label
+                            for="percent-20">20%</label></td>
+                    <td><input type="radio" name="percent" value="25" id="percent-25"><label
+                            for="percent-25">25%</label></td>
+                </tr>
+                <tr>
+                    <td><input type="radio" name="percent" value="30" id="percent-30"><label
+                            for="percent-30">30%</label></td>
+                    <td><input type="radio" name="percent" value="35" id="percent-35"><label
+                            for="percent-35">35%</label></td>
+                    <td><input type="radio" name="percent" value="40" id="percent-40"><label
+                            for="percent-40">40%</label></td>
+                    <td><input type="radio" name="percent" value="45" id="percent-45"><label
+                            for="percent-45">45%</label></td>
+                    <td><input type="radio" name="percent" value="50" id="percent-50"><label
+                            for="percent-50">50%</label></td>
+                </tr>
+                <tr>
+                    <td><input type="radio" name="percent" value="55" id="percent-55"><label
+                            for="percent-55">55%</label></td>
+                    <td><input type="radio" name="percent" value="60" id="percent-60"><label
+                            for="percent-60">60%</label></td>
+                    <td><input type="radio" name="percent" value="65" id="percent-65"><label
+                            for="percent-65">65%</label></td>
+                    <td><input type="radio" name="percent" value="70" id="percent-70"><label
+                            for="percent-70">70%</label></td>
+                    <td><input type="radio" name="percent" value="75" id="percent-75"><label
+                            for="percent-75">75%</label></td>
+                </tr>
+                <tr>
+                    <td><input type="radio" name="percent" value="80" id="percent-80"><label
+                            for="percent-80">80%</label></td>
+                    <td><input type="radio" name="percent" value="85" id="percent-85"><label
+                            for="percent-85">85%</label></td>
+                    <td><input type="radio" name="percent" value="90" id="percent-90"><label
+                            for="percent-90">90%</label></td>
+                </tr>
+                <tr></tr>
             </tbody>
         </table>
 
@@ -392,46 +437,6 @@
 -->
     <div class="viewport-border"></div>
     <div class="viewport-stable_border"></div>
-
-    <script>
-        // Funzione per creare i radiobutton di percentuali
-        function createPercentRadioButtons() {
-            var tableBody = document.querySelector("#percentTable tbody");
-
-            var percent = 5;
-            for (var row = 0; row < 5; row++) {
-                var tableRow = document.createElement("tr");
-
-                for (var col = 0; col < 5; col++) {
-                    var cell = document.createElement("td");
-
-                    var radioButton = document.createElement("input");
-                    radioButton.type = "radio";
-                    radioButton.name = "percent";
-                    radioButton.value = percent;
-                    radioButton.setAttribute("id", "percent-" + percent);
-
-
-                    var label = document.createElement("label");
-                    label.textContent = percent + "%";
-                    label.setAttribute("for", "percent-" + percent);
-
-                    cell.appendChild(radioButton);
-                    cell.appendChild(label);
-                    if (percent <= 90) {
-                        tableRow.appendChild(cell);
-                    }
-
-                    percent += 5;
-                }
-
-                tableBody.appendChild(tableRow);
-            }
-        }
-
-        // Chiamata alla funzione per creare i radiobutton di percentuali
-        createPercentRadioButtons();
-    </script>
 
     <script type="application/javascript">
 
