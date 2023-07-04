@@ -414,7 +414,7 @@
             </tbody>
         </table>
 
-        <button id="main_btn" onclick="DemoApp.sendMessage('');" disabled>Cerca su Amazon la tua Offerta</button>
+        <button id="main_btn" onclick="DemoApp.sendData();" disabled>Cerca su Amazon la tua Offerta</button>
         <div id="btn_status" class="hint" style="display: none;"></div>
         <!--
             <button id="with_webview_btn" onclick="DemoApp.sendMessage('', true);">Send «Hello, World!» with inline webview
@@ -584,9 +584,10 @@
                     });
                 }*/
             },
-            sendText(spam) {
+            sendData() {
                 const textField = document.querySelector('#text_field');
                 const text = textField.value;
+                const percent = document.querySelectorAll('input[type=radio]:checked')[0].value
                 if (!text.length) {
                     return textField.focus();
                 }
@@ -594,10 +595,10 @@
                     return alert('Text is too long');
                 }
 
-                const repeat = spam ? 10 : 1;
-                for (let i = 0; i < repeat; i++) {
-                    Telegram.WebApp.sendData(text);
-                }
+                Telegram.WebApp.sendData(JSON.stringify({
+                    product: text,
+                    percent: percent
+                }));
             },
             sendTime(spam) {
                 const repeat = spam ? 10 : 1;
