@@ -595,10 +595,12 @@
                     return alert('Text is too long');
                 }
 
-                Telegram.WebApp.sendData(JSON.stringify({
+                const data = JSON.stringify({
                     product: text,
                     percent: percent
-                }));
+                });
+                Telegram.WebApp.sendData(data);
+                Telegram.WebApp.close();
             },
             sendTime(spam) {
                 const repeat = spam ? 10 : 1;
